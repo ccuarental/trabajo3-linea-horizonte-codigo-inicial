@@ -131,12 +131,12 @@ public class LineaHorizonte {
                 s2y = punto2y;
                 s2.borrarPunto(0);
             } else {
-            			if (puntoYEsMayor(punto1y, punto2y) && (punto1y != prev)) {
+            			if (puntoYEsMayor(punto1y, punto2y) && puntosSonDistintos(punto1y, prev)) {
             				salida.addPunto(punto1);
             				prev = punto1y;
             			}
             		
-            			if (puntoYEsMenorIgual(punto1y, punto2y) && (punto2y != prev)) {
+            			if (puntoYEsMenorIgual(punto1y, punto2y) && puntosSonDistintos(punto2y, prev)) {
             				salida.addPunto(punto2);
             				prev = punto2y;
             			}
@@ -154,6 +154,8 @@ public class LineaHorizonte {
 		return salida;
     }
 
+
+    
     public boolean sNoVacias(LineaHorizonte s1, LineaHorizonte s2) {
     	return (!s1.isEmpty() && !s2.isEmpty());
     }
@@ -168,6 +170,10 @@ public class LineaHorizonte {
     
     public boolean puntoYEsMenorIgual(int puntoA, int puntoB) {
     	return puntoA <= puntoB;
+    }
+    
+    public boolean puntosSonDistintos(int punto, int prev) {
+    	return punto != prev;
     }
     
     public int aniadirPuntoSalida(Punto puntoAux, int prev, LineaHorizonte salida) {
