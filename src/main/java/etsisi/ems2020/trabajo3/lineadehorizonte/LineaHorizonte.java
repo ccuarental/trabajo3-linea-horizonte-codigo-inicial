@@ -131,15 +131,16 @@ public class LineaHorizonte {
                 s2y = punto2y;
                 s2.borrarPunto(0);
             } else {
-            			if (puntoYEsMayor(punto1y, punto2y) && puntosSonDistintos(punto1y, prev)) {
-            				salida.addPunto(punto1);
-            				prev = punto1y;
-            			}
-            		
-            			if (puntoYEsMenorIgual(punto1y, punto2y) && puntosSonDistintos(punto2y, prev)) {
-            				salida.addPunto(punto2);
-            				prev = punto2y;
-            			}
+            	metodoMagico(punto1y, punto2y, prev, punto1, punto2, salida);
+//            			if (puntoYEsMayor(punto1y, punto2y) && puntosSonDistintos(punto1y, prev)) {
+//            				salida.addPunto(punto1);
+//            				prev = punto1y;
+//            			}
+//            		
+//            			if (puntoYEsMenorIgual(punto1y, punto2y) && puntosSonDistintos(punto2y, prev)) {
+//            				salida.addPunto(punto2);
+//            				prev = punto2y;
+//            			}
                 
             			s1y = punto1y;
             			s2y = punto2y;
@@ -154,7 +155,17 @@ public class LineaHorizonte {
 		return salida;
     }
 
-
+    public void metodoMagico(int puntoA, int puntoB, int prev, Punto punto1, Punto punto2, LineaHorizonte salida) {
+    	if (puntoYEsMayor(puntoA, puntoB) && puntosSonDistintos(puntoA, prev)) {
+			salida.addPunto(punto1);
+			prev = puntoA;
+		}
+	
+		if (puntoYEsMenorIgual(puntoA, puntoB) && puntosSonDistintos(puntoB, prev)) {
+			salida.addPunto(punto2);
+			prev = puntoB;
+		}
+    }
     
     public boolean sNoVacias(LineaHorizonte s1, LineaHorizonte s2) {
     	return (!s1.isEmpty() && !s2.isEmpty());
