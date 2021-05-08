@@ -1,27 +1,27 @@
 package etsisi.ems2020.trabajo3.lineadehorizonte;
 
 public class Edificio {
-	private int xi;
+	private int xIzquierda;
     private int y;
-    private int xd;
+    private int xDerecha;
     
     public Edificio()
     {
-        this.xd = 0;
-        this.xi = 0;
+        this.xDerecha = 0;
+        this.xIzquierda = 0;
         this.y = 0;
     }    
-    public Edificio(int xi, int y, int xd)
+    public Edificio(int xIzquierda, int y, int xDerecha)
     {
-        this.xd = xd;
-        this.xi = xi;
+        this.xDerecha = xDerecha;
+        this.xIzquierda = xIzquierda;
         this.y = y;
     }    
-    public int getXi() {
-        return this.xi;
+    public int getxIzquierda() {
+        return this.xIzquierda;
     }
-    public void setXi(int xi) {
-        this.xi = xi;
+    public void setxIzquierda(int xIzquierda) {
+        this.xIzquierda = xIzquierda;
     }
     public int getY() {
         return this.y;
@@ -29,10 +29,10 @@ public class Edificio {
     public void setY(int y) {
         this.y = y;
     }
-    public int getXd() {
-        return this.xd;
+    public int getxDerecha() {
+        return this.xDerecha;
     }
-    public void setXd(int xd) {
-        this.xd = xd;
+    public void setxDerecha(int xDerecha) {
+        this.xDerecha = xDerecha;
     }
 }
