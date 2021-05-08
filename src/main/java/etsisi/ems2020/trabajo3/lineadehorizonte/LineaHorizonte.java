@@ -1,6 +1,8 @@
 package etsisi.ems2020.trabajo3.lineadehorizonte;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -40,23 +42,19 @@ public class LineaHorizonte {
     	return lineaHorizonte.isEmpty();
     }
 
-    // REV
-    public void guardaLineaHorizonte (String fichero)
-    {
-        try
-        {
-           Punto p = new Punto();
-            FileWriter fileWriter = new FileWriter(fichero);
-            PrintWriter out = new PrintWriter (fileWriter);
-         
-            for(int i=0; i<this.size(); i++)
-            {
-                p=(getPunto(i));
-                out.print(p.getX() + " " + p.getY() + "\n");
-            }
+    public void guardaLineaHorizonte (String fichero) throws IOException {
+    	try {
+    		Punto punto = new Punto();
+    		FileWriter fileWriter = new FileWriter(fichero);
+    		PrintWriter out = new PrintWriter(fileWriter);
+
+    		for(int i = 0; i < this.size(); i++) {
+    			punto = getPunto(i);
+    			out.print(punto.getX() + " " + punto.getY() + "\n");
+    		}
+    		
             out.close();
-        }
-        catch(Exception e){
+        } catch(FileNotFoundException e) {
         	System.out.println(e.getMessage());
         }
     }
@@ -109,7 +107,7 @@ public class LineaHorizonte {
 
     	imprimirLineas(s1, s2);
 
-        while ((!s1.isEmpty()) && (!s2.isEmpty())) {
+    	while (sNoVacias(s1, s2)) { 
         	Punto puntoAux = new Punto();
             punto1 = s1.getPunto(0);
             punto2 = s2.getPunto(0);
@@ -156,6 +154,10 @@ public class LineaHorizonte {
 		return salida;
     }
 
+    public boolean sNoVacias(LineaHorizonte s1, LineaHorizonte s2) {
+    	return (!s1.isEmpty() && !s2.isEmpty());
+    }
+    
     public int aniadirPuntoSalida(Punto puntoAux, int prev, LineaHorizonte salida) {
     	if (puntoAux.getY() != prev) {
     		salida.addPunto(puntoAux);
@@ -166,7 +168,7 @@ public class LineaHorizonte {
     }
 
     public void quedanElementos(LineaHorizonte s1, LineaHorizonte salida, int prev ) {
-    	while ((!s1.isEmpty())) {
+    	while (!s1.isEmpty()) {
     		Punto puntoAux = s1.getPunto(0);
 
     		if (puntoAux.getY() != prev) {
