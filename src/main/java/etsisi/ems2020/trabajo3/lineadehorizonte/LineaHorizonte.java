@@ -115,15 +115,15 @@ public class LineaHorizonte {
             int punto2x = punto2.getX();
             int punto1y = punto1.getY();
             int punto2y = punto2.getY();
-
-            if (punto1x < punto2x) {
+            
+            if (puntoEsMenor(punto1x, punto2x)) {
             	puntoAux.setX(punto1x);
                 puntoAux.setY(Math.max(punto1y, s2y));
 
                 prev = aniadirPuntoSalida(puntoAux, prev, salida);
                 s1y = punto1y;
                 s1.borrarPunto(0);
-            } else if (punto1x > punto2x) {
+            } else if (puntoEsMenor(punto2x, punto1x)) {
                 puntoAux.setX(punto2x);
                 puntoAux.setY(Math.max(punto2y, s1y));
 
@@ -156,6 +156,10 @@ public class LineaHorizonte {
 
     public boolean sNoVacias(LineaHorizonte s1, LineaHorizonte s2) {
     	return (!s1.isEmpty() && !s2.isEmpty());
+    }
+    
+    public boolean puntoEsMenor(int puntoA, int puntoB) {
+    	return puntoA < puntoB;
     }
     
     public int aniadirPuntoSalida(Punto puntoAux, int prev, LineaHorizonte salida) {
