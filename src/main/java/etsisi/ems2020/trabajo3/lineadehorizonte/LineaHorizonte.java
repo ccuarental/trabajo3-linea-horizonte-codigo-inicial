@@ -116,14 +116,14 @@ public class LineaHorizonte {
             int punto1y = punto1.getY();
             int punto2y = punto2.getY();
             
-            if (puntoEsMenor(punto1x, punto2x)) {
+            if (puntoXEsMenor(punto1x, punto2x)) {
             	puntoAux.setX(punto1x);
                 puntoAux.setY(Math.max(punto1y, s2y));
 
                 prev = aniadirPuntoSalida(puntoAux, prev, salida);
                 s1y = punto1y;
                 s1.borrarPunto(0);
-            } else if (puntoEsMenor(punto2x, punto1x)) {
+            } else if (puntoXEsMenor(punto2x, punto1x)) {
                 puntoAux.setX(punto2x);
                 puntoAux.setY(Math.max(punto2y, s1y));
 
@@ -131,12 +131,12 @@ public class LineaHorizonte {
                 s2y = punto2y;
                 s2.borrarPunto(0);
             } else {
-            			if ((punto1y > punto2y) && (punto1y != prev)) {
+            			if (puntoYEsMayor(punto1y, punto2y) && (punto1y != prev)) {
             				salida.addPunto(punto1);
             				prev = punto1y;
             			}
             		
-            			if ((punto1y <= punto2y) && (punto2y != prev)) {
+            			if (puntoYEsMenorIgual(punto1y, punto2y) && (punto2y != prev)) {
             				salida.addPunto(punto2);
             				prev = punto2y;
             			}
@@ -158,8 +158,16 @@ public class LineaHorizonte {
     	return (!s1.isEmpty() && !s2.isEmpty());
     }
     
-    public boolean puntoEsMenor(int puntoA, int puntoB) {
+    public boolean puntoXEsMenor(int puntoA, int puntoB) {
     	return puntoA < puntoB;
+    }
+
+    public boolean puntoYEsMayor(int puntoA, int puntoB) {
+    	return puntoA > puntoB;
+    }
+    
+    public boolean puntoYEsMenorIgual(int puntoA, int puntoB) {
+    	return puntoA <= puntoB;
     }
     
     public int aniadirPuntoSalida(Punto puntoAux, int prev, LineaHorizonte salida) {
